@@ -1,4 +1,4 @@
-{% set version = '1.13' %}
+{% set version = "1.14" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,13 +10,12 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/corrgram_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/corrgram/corrgram_{{ version }}.tar.gz
-  sha256: aa5ed93308a8d0ba41d365b2cf4517b6d14843248fbcea9850e56b18772aa1bc
+  sha256: 619f72c3319f6d10f30da032e8d3fab5a5d4d9581a715166efbfb67c15dfb089
 
 build:
   noarch: generic
-  merge_build_host: True  # [win]
-  number: 1002
-  noarch: generic
+  merge_build_host: true  # [win]
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
@@ -39,11 +38,9 @@ test:
 about:
   home: https://github.com/kwstat/corrgram
   license: GPL-3
-  summary: Calculates correlation of variables and displays the results graphically. Included
-    panel functions can display points, shading, ellipses, and correlation values with
-    confidence intervals. See Friendly (2002) <doi:10.1198/000313002533>.
+  summary: Calculates correlation of variables and displays the results graphically. Included panel functions can display points, shading, ellipses, and correlation values with confidence intervals. See Friendly (2002) <doi:10.1198/000313002533>.
   license_family: GPL3
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'
+  license_file: {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
 
 extra:
   recipe-maintainers:
