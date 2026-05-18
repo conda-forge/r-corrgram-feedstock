@@ -1,4 +1,4 @@
-{% set version = "1.14" %}
+{% set version = "1.15" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,10 +9,10 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/corrgram_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/corrgram/corrgram_{{ version }}.tar.gz
-  sha256: 619f72c3319f6d10f30da032e8d3fab5a5d4d9581a715166efbfb67c15dfb089
+  sha256: 017d0efa3b53dd5025fdb4094ac62e9bd2c6732173bf67a288d8d08fccebe72a
 
 build:
-  number: 4
+  number: 0
   noarch: generic
   rpaths:
     - lib/R/lib/
