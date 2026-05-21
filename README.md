@@ -3,11 +3,13 @@ About r-corrgram-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-corrgram-feedstock/blob/main/LICENSE.txt)
 
-Home: https://github.com/kwstat/corrgram
+Home: https://kwstat.github.io/corrgram/
 
-Package license: GPL-3.0-only
+Package license: MIT
 
 Summary: Calculates correlation of variables and displays the results graphically. Included panel functions can display points, shading, ellipses, and correlation values with confidence intervals. See Friendly (2002) <doi:10.1198/000313002533>.
+
+Development: https://github.com/kwstat/corrgram
 
 Current build status
 ====================
