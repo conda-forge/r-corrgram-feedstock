@@ -1,30 +1,39 @@
-{% set version = "1.14" %}
+{% set version = "1.15" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
   name: r-corrgram
-  version: {{ version|replace("-", "_") }}
+  version: "{{ version|replace("-", "_") }}"
 
 source:
   url:
     - {{ cran_mirror }}/src/contrib/corrgram_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/corrgram/corrgram_{{ version }}.tar.gz
-  sha256: 619f72c3319f6d10f30da032e8d3fab5a5d4d9581a715166efbfb67c15dfb089
+  sha256: 017d0efa3b53dd5025fdb4094ac62e9bd2c6732173bf67a288d8d08fccebe72a
 
 build:
-  number: 4
+  number: 0
   noarch: generic
   rpaths:
     - lib/R/lib/
     - lib/
+  missing_dso_whitelist:
+    - '*/R.dll'        # [win]
+    - '*/Rblas.dll'    # [win]
+    - '*/Rlapack.dll'  # [win]
 
 requirements:
   build:
     - {{ posix }}zip               # [win]
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
   host:
     - r-base
+    - r-ellipse
+    - r-lattice
   run:
     - r-base
+    - r-ellipse
+    - r-lattice
 
 test:
   commands:
@@ -32,36 +41,14 @@ test:
     - "\"%R%\" -e \"library('corrgram')\""  # [win]
 
 about:
-  home: https://github.com/kwstat/corrgram
-  license: GPL-3.0-only
+  home: https://kwstat.github.io/corrgram/
+  dev_url: https://github.com/kwstat/corrgram
+  license: MIT
   summary: Calculates correlation of variables and displays the results graphically. Included panel functions can display points, shading, ellipses, and correlation values with confidence intervals. See Friendly (2002) <doi:10.1198/000313002533>.
-  license_family: GPL3
+  license_family: MIT
   license_file:
-    - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
+    - {{ environ["PREFIX"] }}/lib/R/share/licenses/MIT
 
 extra:
   recipe-maintainers:
     - conda-forge/r
-
-# Package: corrgram
-# Title: Plot a Correlogram
-# Version: 1.13
-# Authors@R: person("Kevin","Wright", email="kw.stat@gmail.com", comment=c(ORCID = "0000-0002-0617-8673"), role=c("aut","cre"))
-# Date: 2018-07-06
-# Type: Package
-# Description: Calculates correlation of variables and displays the results graphically. Included panel functions can display points, shading, ellipses, and correlation values with confidence intervals. See Friendly (2002) <doi:10.1198/000313002533>.
-# Imports: graphics, grDevices, seriation, stats
-# Suggests: gridBase, knitr, Matrix, psych, rmarkdown, sfsmisc, testthat
-# License: GPL-3
-# LazyData: yes
-# Encoding: UTF-8
-# URL: https://github.com/kwstat/corrgram
-# BugReports: https://github.com/kwstat/corrgram/issues/
-# VignetteBuilder: knitr
-# RoxygenNote: 6.0.1
-# NeedsCompilation: no
-# Packaged: 2018-07-09 19:57:38 UTC; wrightkevi
-# Author: Kevin Wright [aut, cre] (<https://orcid.org/0000-0002-0617-8673>)
-# Maintainer: Kevin Wright <kw.stat@gmail.com>
-# Repository: CRAN
-# Date/Publication: 2018-07-09 21:30:03 UTC
